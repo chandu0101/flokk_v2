@@ -9,12 +9,14 @@ part of 'app_state.dart';
 
 class AppState implements AppStateI<AppState> {
   late final Nav nav;
+  late final Auth2 auth;
   @override
-  AppState copyWithMap(Map<String, dynamic> map) =>
-      AppState()..nav = map.containsKey('nav') ? map['nav'] as Nav : this.nav;
+  AppState copyWithMap(Map<String, dynamic> map) => AppState()
+    ..nav = map.containsKey('nav') ? map['nav'] as Nav : this.nav
+    ..auth = map.containsKey('auth') ? map['auth'] as Auth2 : this.auth;
   @override
   Map<String, PStateModel<dynamic>> toMap() =>
-      <String, PStateModel<dynamic>>{"nav": this.nav};
+      <String, PStateModel<dynamic>>{"nav": this.nav, "auth": this.auth};
 }
 
 Store<AppState> createStore(
@@ -24,7 +26,7 @@ Store<AppState> createStore(
     NetworkOptions? networkOptions,
     bool useEqualsComparision = false}) {
   return Store<AppState>(
-      internalMeta: <String, PStateMeta>{"nav": NavMeta},
+      internalMeta: <String, PStateMeta>{"nav": NavMeta, "auth": Auth2Meta},
       stateCreator: () => AppState(),
       appVersion: '1.0.0+1',
       networkOptions: networkOptions,

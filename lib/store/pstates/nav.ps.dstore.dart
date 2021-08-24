@@ -21,7 +21,8 @@ class Nav extends NavStateI<Nav> with PStateStoreDepsMixin, NavCommonI {
         action: NavActions.login(),
         isAuthenticated: (state) {
           print("calling isAuth");
-          return false;
+          final s = state as AppState;
+          return s.auth.loggedIn;
         });
   }
 
@@ -156,7 +157,7 @@ dynamic Nav_SyncReducer(dynamic _DStoreState, Action _DstoreAction) {
   switch (name) {
     case "notFound":
       {
-        final _DstoreActionPayload = _DstoreAction.payload!;
+        final _DstoreActionPayload = _DstoreAction.payload;
         var _DStore_page = _DStoreState.page;
         _DStore_page =
             MaterialPage(key: ValueKey("unkonw"), child: UnkownScreen());
@@ -171,7 +172,7 @@ dynamic Nav_SyncReducer(dynamic _DStoreState, Action _DstoreAction) {
 
     case "home":
       {
-        final _DstoreActionPayload = _DstoreAction.payload!;
+        final _DstoreActionPayload = _DstoreAction.payload;
         var _DStore_page = _DStoreState.page;
         _DStore_page = MaterialPage(key: ValueKey("home"), child: HomeScreen());
         var newState =
@@ -185,7 +186,7 @@ dynamic Nav_SyncReducer(dynamic _DStoreState, Action _DstoreAction) {
 
     case "login":
       {
-        final _DstoreActionPayload = _DstoreAction.payload!;
+        final _DstoreActionPayload = _DstoreAction.payload;
         var _DStore_page = _DStoreState.page;
         _DStore_page =
             MaterialPage(key: ValueKey("unkonw"), child: LoginScreen());
